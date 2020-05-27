@@ -30,16 +30,15 @@ async function createCourse() {
 createCourse();
 
 async function getCourses() {
-    const pageNumber = 2;
-    const pageSize = 10;
-
-    const courses = await Course
-        .find({ author: 'Mosh', isPublished: 'true'})
-        .skip((pageNumber - 1) * pageSize) //skip prevous pages
-        .limit(pageSize)
+    return await Course
+        .find({ isPublished: 'true', tags: 'backend'})
         .sort({name: 1})          
-        .select({name: 1, tags: 1});
+        .select({name: 1, author: 1});
+}
+
+async function run() {
+    const courses = await getCourses();
     console.log(courses);
 }
 
-getCourses();
+run();
