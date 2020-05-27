@@ -30,25 +30,15 @@ async function createCourse() {
 createCourse();
 
 async function getCourses() {
-    // OR
-    // AND 
+    const pageNumber = 2;
+    const pageSize = 10;
 
     const courses = await Course
-        //.find({ author: 'Mosh', isPublished: 'true'})
-        //.find({ price: { $gt: 10, $lte: 20} })
-       // .find({price: {$in: [10, 15, 20] }})
-        //.find()
-        //.or([ {author: 'Mosh'}, {isPublished: true} ])
-        //starts with Mohs
-        .find({author: /^Mosh/})
-        //ends with Hamedani
-        .find({author: /Hamedani$/i})
-        //contains Mosh
-        .find({author: /.*Mosh.*/i})
-        .limit(2)
-        .sort({name: 1})          //ASC = 1, DESC = -1 
-        .select({ name: 1, tags: 1 });  
-         //which properties we want to return from query
+        .find({ author: 'Mosh', isPublished: 'true'})
+        .skip((pageNumber - 1) * pageSize) //skip prevous pages
+        .limit(pageSize)
+        .sort({name: 1})          
+        .select({name: 1, tags: 1});
     console.log(courses);
 }
 
