@@ -31,8 +31,9 @@ createCourse();
 
 async function getCourses() {
     return await Course
-        .find({ isPublished: 'true', tags: 'backend'})
-        .sort({name: 1})          
+        .find({ isPublished: 'true'})
+        .or([ {tags: 'fronend'}, {tags: 'backend'}])
+        .sort({price: -1})          
         .select({name: 1, author: 1});
 }
 
