@@ -41,7 +41,8 @@ async function getCourses() {
 
     const courses = await Course
         //.find({ author: 'Mosh', isPublished: 'true'})
-        .find({ price: { $gt: 10, $lte: 20} })
+        //.find({ price: { $gt: 10, $lte: 20} })
+        .find({price: {$in: [10, 15, 20] }})
         .limit(2)
         .sort({name: 1})          //ASC = 1, DESC = -1 
         .select({ name: 1, tags: 1 });  
