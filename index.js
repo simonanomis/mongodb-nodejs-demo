@@ -13,3 +13,11 @@ const courseSchema = new mongoose.Schema({
     date: {type: Date, default: Date.now},
     isPublished: Boolean
 });
+
+const Course = mongoose.model('Course', courseSchema); //class
+const course = new Course({
+    name: 'Node.js Course',
+    author: 'Simona',
+    tags: ['node', 'backend'],
+    isPublished: true
+}); //object, where there is many to many relationiship between courses and tags
