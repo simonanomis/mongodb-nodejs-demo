@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/simonanomis/mongodb-nodejs-demo#readme",
   "dependencies": {
-    "mongoose": "^5.9.16"
+    "mongoose": "^5.13.15"
   }
 }
